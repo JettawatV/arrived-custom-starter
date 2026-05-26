@@ -16,8 +16,6 @@ export default async function PhotosPage() {
 
   const gallery = await getPublicPhotos({ eventId, env, pageSize: 60 });
 
-  console.log("gallery", gallery);
-
   return (
     <main>
       <Container>
