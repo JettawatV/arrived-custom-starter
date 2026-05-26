@@ -102,3 +102,4 @@ That's it. The generated API types (`lib/happily/generated/schema.d.ts`) are com
 - [Product overview](https://teamhappily.com/arrived/)
 - [Design templates (Figma)](https://www.figma.com/design/k8CN5DFdzpeLCYfhXZmpeT/Design-Jam-Templates)
 - [API reference](https://app.happily.events/api/docs)
+- [Discord community](https://discord.com/invite/d7HnMZfvB7) — questions, show-and-tell, help
