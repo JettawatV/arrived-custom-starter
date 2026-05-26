@@ -40,7 +40,7 @@ The three query functions are the canonical entry points — reuse them rather t
 
 ## Conventions and gotchas
 
-- **Tailwind v4 native CSS-var syntax**: `bg-(--event-primary-bg)`, `text-(--event-base-text)` — *not* the older `bg-[var(...)]`. Match the existing style when adding classes.
+- **Tailwind v4 native CSS-var syntax**: `bg-(--event-primary-bg)`, `text-(--event-base-text)` — *not* the older `bg-[var(--event-primary-bg)]` arbitrary-value form. Match the existing style when adding classes.
 - **`next/image` with `unoptimized: true`** (`next.config.ts`). Source images must already be sized appropriately; don't rely on Next image optimization.
 - **Server components by default.** Only `<RegistrationForm>` and a handful of interactive components carry `"use client"`. Don't add it reflexively — check whether a server component will do.
 - **No explicit fetch caching directives.** Queries are bare `await` calls. If you need revalidation, decide deliberately.

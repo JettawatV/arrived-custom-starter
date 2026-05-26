@@ -66,7 +66,7 @@ Open [http://localhost:3000](http://localhost:3000) — your event site renders 
 ## Customizing
 
 - **Colors and fonts.** Design tokens come from your event's settings in Happily, applied as CSS variables in `app/(event)/layout.tsx`. Hardcode in components only when you want a per-section override.
-- **Tailwind v4 CSS-var syntax.** Use `bg-(--event-primary-bg)`, *not* the older `bg-[var(...)]`. Match the surrounding code.
+- **Tailwind v4 CSS-var syntax.** Use `bg-(--event-primary-bg)`, *not* the older `bg-[var(--event-primary-bg)]` arbitrary-value form. Match the surrounding code.
 - **Add a section.** Drop a new component into `components/`, then render it from `components/event-page.tsx`.
 - **Feature toggles.** The photos page, livestream, calendar buttons, and registration CTA are gated by fields on the event payload (`event.photos_toggle`, `event.live_toggle`, `event.display_add_to_calendar`, `event.display_settings.*`). Toggle them in the Happily CMS to show or hide the corresponding sections.
 
