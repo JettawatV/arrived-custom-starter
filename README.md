@@ -21,13 +21,15 @@ Design references and starting-point templates live in Figma: [Design Templates]
 2. Click **Create Event** and fill out the basics. You don't need to publish — staging mode reads drafts.
 3. Once created, you'll land on the event editor. Your event ID is in the URL: `app.happily.events/<EVENT_ID>/...` — copy that ID.
 
-### 2. Clone and install
+### 2. Fork and clone
 
-```bash
-git clone <repo-url>
-cd arrived-custom-starter
-npm install
-```
+1. Click **Fork** at the top of [the starter repo on GitHub](https://github.com/teamhappily/arrived-custom-starter) to create your own copy. Forking (instead of cloning directly) lets us see who's building with the starter and lets you push your customizations to your own GitHub.
+2. Clone your fork and install dependencies:
+   ```bash
+   git clone git@github.com:<your-username>/arrived-custom-starter.git
+   cd arrived-custom-starter
+   npm install
+   ```
 
 ### 3. Configure
 
