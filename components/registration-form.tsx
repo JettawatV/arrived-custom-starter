@@ -18,6 +18,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { registerCtaButtonClassName } from "@/components/helpers";
 import type {
   HappilyEnv,
   PublicForm,
@@ -191,7 +192,7 @@ export function RegistrationForm({
           type="submit"
           disabled={isPending}
           size="lg"
-          className="min-h-12 min-w-48 rounded-(--event-border-radius) bg-(--event-primary-bg) text-base font-semibold text-(--event-primary-text) hover:bg-(--event-primary-bg)/85"
+          className={`min-h-12 min-w-48 text-base ${registerCtaButtonClassName}`}
         >
           {isPending
             ? "Submitting..."

@@ -7,14 +7,16 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+import type { DisplayFaq } from "./helpers";
 import { ordered } from "./helpers";
 import { Markdown } from "./markdown";
 
 type FaqListProps = {
-  faqs: PublicEventData["faqs"];
+  faqs: DisplayFaq[] | PublicEventData["faqs"];
+  large?: boolean;
 };
 
-export function FaqList({ faqs }: FaqListProps) {
+export function FaqList({ faqs, large = false }: FaqListProps) {
   return (
     <Accordion type="multiple" className="grid gap-3">
       {ordered(faqs).map((faq) => (
@@ -23,10 +25,22 @@ export function FaqList({ faqs }: FaqListProps) {
           value={String(faq.id)}
           className="border-t-0 border-x-0 border-b px-0 border-(--event-base-text) bg-(--event-base-bg) pb-3 text-(--event-base-text)"
         >
-          <AccordionTrigger className="font-semibold hover:no-underline">
+          <AccordionTrigger
+            className={
+              large
+                ? "text-lg font-semibold hover:no-underline md:text-xl"
+                : "font-semibold hover:no-underline"
+            }
+          >
             {faq.question}
           </AccordionTrigger>
-          <AccordionContent className="text-(--event-base-text)/90">
+          <AccordionContent
+            className={
+              large
+                ? "text-base text-(--event-base-text)/90 md:text-lg"
+                : "text-(--event-base-text)/90"
+            }
+          >
             <Markdown>{faq.answer}</Markdown>
           </AccordionContent>
         </AccordionItem>

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 import { ScrollLink } from "./scroll-link";
 import { EventDetails } from "./event-details";
-import { heroImage, text } from "./helpers";
+import { heroImage, registerCtaButtonClassName, text } from "./helpers";
 import { Container } from "./container";
 
 type HeroSectionProps = {
@@ -17,7 +17,7 @@ type HeroSectionProps = {
 export function HeroSection({ event, formActive }: HeroSectionProps) {
   const content = event.content;
   const heroSectionType = content.heroSection ?? "image";
-  const image = heroImage(content) ?? "/herosection-bg.png";
+  const image = heroImage(content);
   const overlayOpacity =
     content.overlay === "0%" ? "bg-black/0" : "bg-black/50";
   const hasBackground = heroSectionType !== "none";
@@ -53,6 +53,7 @@ export function HeroSection({ event, formActive }: HeroSectionProps) {
       )}
       <Container
         id="hero"
+        reveal={false}
         className="grid content-end max-w-7xl py-20 min-h-[50vh]"
       >
         <div className="max-w-3xl">
@@ -70,7 +71,7 @@ export function HeroSection({ event, formActive }: HeroSectionProps) {
             <Button
               asChild
               size="lg"
-              className="mt-4 min-h-12 bg-(--event-accent-bg) px-5 py-3 font-semibold text-(--event-accent-text) hover:bg-(--event-accent-bg)/85"
+              className={`mt-4 min-h-12 px-8 py-3 text-base ${registerCtaButtonClassName}`}
             >
               <ScrollLink href="#register">
                 {text(

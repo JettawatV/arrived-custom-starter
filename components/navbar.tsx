@@ -1,6 +1,7 @@
 "use client";
 
 import { ScrollLink } from "./scroll-link";
+import { registerCtaButtonClassName } from "./helpers";
 
 export type NavLinkItem = {
   label: string;
@@ -25,7 +26,7 @@ export function Navbar({ nav, ctaText, ctaHref }: NavbarProps) {
       {ctaHref && ctaText ? (
         <ScrollLink
           href={ctaHref}
-          className="rounded-(--event-border-radius) bg-(--event-primary-bg) px-4 py-2 font-semibold text-(--event-primary-text)"
+          className={`px-6 py-2.5 text-sm ${registerCtaButtonClassName}`}
         >
           {ctaText}
         </ScrollLink>

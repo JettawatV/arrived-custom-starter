@@ -16,6 +16,7 @@ import {
 type AddToCalendarProps = {
   event: CalendarEvent;
   className?: string;
+  variant?: "solid" | "outline";
 };
 
 const services = [
@@ -51,7 +52,11 @@ const services = [
   },
 ] as const;
 
-export function AddToCalendar({ event, className }: AddToCalendarProps) {
+export function AddToCalendar({
+  event,
+  className,
+  variant = "solid",
+}: AddToCalendarProps) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -71,7 +76,11 @@ export function AddToCalendar({ event, className }: AddToCalendarProps) {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="min-h-12 rounded-(--event-border-radius) bg-(--event-primary-bg) text-base font-semibold text-(--event-primary-text) hover:bg-(--event-primary-bg)/85 px-5 py-3 transition"
+        className={
+          variant === "outline"
+            ? "min-h-12 rounded-(--event-border-radius) border border-(--event-primary-text)/25 bg-(--event-primary-text)/10 px-5 py-3 text-base font-semibold text-(--event-primary-text) backdrop-blur-sm transition hover:bg-(--event-primary-text)/15"
+            : "min-h-12 rounded-(--event-border-radius) bg-(--event-primary-bg) px-5 py-3 text-base font-semibold text-(--event-primary-text) transition hover:bg-(--event-primary-bg)/85"
+        }
       >
         Add to Calendar
       </button>

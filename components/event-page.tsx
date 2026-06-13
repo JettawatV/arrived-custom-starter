@@ -3,8 +3,9 @@ import type { PublicEventData } from "@/lib/happily/types";
 import { AgendaList } from "./agenda-list";
 import { Container } from "./container";
 import { ContentSection } from "./content-section";
-import { FaqList } from "./faq-list";
-import { hasText, text } from "./helpers";
+import { FaqSection } from "./faq-section";
+import { FinalCtaSection } from "./final-cta-section";
+import { hasText, isSectionDisplayed, text } from "./helpers";
 import { HeroSection } from "./hero-section";
 import { Markdown } from "./markdown";
 import { RegistrationForm } from "./registration-form";
@@ -26,7 +27,8 @@ export function EventPage({ eventData, eventId, env }: EventPageProps) {
     <main>
       <HeroSection event={event} formActive={form?.is_active} />
 
-      {hasText(content.aboutTitle) || hasText(content.aboutDescription) ? (
+      {isSectionDisplayed(event.display_settings, "about") &&
+      (hasText(content.aboutTitle) || hasText(content.aboutDescription)) ? (
         <ContentSection
           id="about"
           title={text(content.aboutTitle, "About")}
@@ -35,7 +37,7 @@ export function EventPage({ eventData, eventId, env }: EventPageProps) {
         />
       ) : null}
 
-      {sessions.length ? (
+      {isSectionDisplayed(event.display_settings, "agenda") && sessions.length ? (
         <Container id="agenda">
           <SectionHeading
             title={text(content.agendaTitle, "Agenda")}
@@ -52,7 +54,7 @@ export function EventPage({ eventData, eventId, env }: EventPageProps) {
         </Container>
       ) : null}
 
-      {speakers.length ? (
+      {isSectionDisplayed(event.display_settings, "speakers") && speakers.length ? (
         <Container id="speakers">
           <SectionHeading
             title={text(content.speakersTitle, "Speakers")}
@@ -102,7 +104,7 @@ export function EventPage({ eventData, eventId, env }: EventPageProps) {
         />
       ) : null}
 
-      {sponsors.length ? (
+      {isSectionDisplayed(event.display_settings, "sponsors") && sponsors.length ? (
         <Container id="sponsors">
           <SectionHeading
             title={text(content.sponsorsTitle, "Sponsors")}
@@ -114,17 +116,9 @@ export function EventPage({ eventData, eventId, env }: EventPageProps) {
         </Container>
       ) : null}
 
-      {faqs.length ? (
-        <Container id="faqs">
-          <SectionHeading
-            title={text(content.faqsTitle, "FAQs")}
-            description={content.faqsDescription}
-          />
-          <div className="mt-8">
-            <FaqList faqs={faqs} />
-          </div>
-        </Container>
-      ) : null}
+      <FaqSection event={event} faqs={faqs} />
+
+      <FinalCtaSection event={event} form={form} />
     </main>
   );
 }

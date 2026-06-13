@@ -7,6 +7,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 import type { NavLinkItem } from "./navbar";
+import { registerCtaButtonClassName } from "./helpers";
 import { ScrollLink } from "./scroll-link";
 import { Button } from "./ui/button";
 
@@ -67,7 +68,7 @@ export function MobileMenu({ nav, ctaText, ctaHref }: MobileMenuProps) {
               <ScrollLink
                 href={ctaHref}
                 onAfterScroll={() => setOpen(false)}
-                className="block rounded-(--event-border-radius) bg-(--event-primary-bg) px-4 py-3 text-center font-semibold text-(--event-primary-text)"
+                className={`block px-6 py-3 text-center ${registerCtaButtonClassName}`}
               >
                 {ctaText}
               </ScrollLink>
