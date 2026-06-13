@@ -17,7 +17,7 @@ type HeroSectionProps = {
 export function HeroSection({ event, formActive }: HeroSectionProps) {
   const content = event.content;
   const heroSectionType = content.heroSection ?? "image";
-  const image = heroImage(content);
+  const image = heroImage(content) ?? "/herosection-bg.png";
   const overlayOpacity =
     content.overlay === "0%" ? "bg-black/0" : "bg-black/50";
   const hasBackground = heroSectionType !== "none";

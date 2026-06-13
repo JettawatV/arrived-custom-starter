@@ -1,8 +1,8 @@
-# CLAUDE.md
+# AGENTS.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to AI coding agents when working with code in this repository.
 
-> **Mirrors:** Same content is in `AGENTS.md` for other AI agents. Skills are mirrored in `.cursor/skills/` (see also `.claude/skills/`).
+> **Mirrors:** Same content as `CLAUDE.md` (Claude Code). Project skills are in `.claude/skills/` and `.cursor/skills/`.
 
 ## Read the docs first
 
@@ -55,8 +55,8 @@ Read these when the task matches their scope:
 
 | Skill | Path | Use when |
 | --- | --- | --- |
-| `happily-api` | `.claude/skills/happily-api/SKILL.md` | API queries, types, registration, feature flags, `lib/happily/` |
-| `event-components` | `.claude/skills/event-components/SKILL.md` | UI in `components/`, theming, section composition, gating |
+| `happily-api` | `.cursor/skills/happily-api/SKILL.md` | API queries, types, registration, feature flags, `lib/happily/` |
+| `event-components` | `.cursor/skills/event-components/SKILL.md` | UI in `components/`, theming, section composition, gating |
 | `ui-ux-pro-max` | `.agents/skills/ui-ux-pro-max/SKILL.md` | UI/UX design, accessibility, color/typography, component styling, layout review |
 
 ## Reference

@@ -37,14 +37,17 @@ export default async function EventLayout({
   const styles = eventData.event.styles;
 
   const eventVars = {
-    "--event-primary-bg": styleValue(styles, "primaryBg", "#171717"),
-    "--event-primary-text": styleValue(styles, "primaryText", "#ffffff"),
-    "--event-secondary-bg": styleValue(styles, "secondaryBg", "#f4f4f5"),
-    "--event-secondary-text": styleValue(styles, "secondaryText", "#171717"),
-    "--event-accent-bg": styleValue(styles, "accentBg", "#171717"),
-    "--event-accent-text": styleValue(styles, "accentText", "#ffffff"),
-    "--event-base-bg": styleValue(styles, "baseBg", "#ffffff"),
-    "--event-base-text": styleValue(styles, "baseText", "#171717"),
+    "--event-primary-bg": styleValue(styles, "primaryBg", "#2d2926"),
+    "--event-primary-text": styleValue(styles, "primaryText", "#fdfbf7"),
+    "--event-secondary-bg": styleValue(styles, "secondaryBg", "#6b705c"),
+    "--event-secondary-bg-alt": styleValue(styles, "secondaryBgAlt", "#565b4a"),
+    "--event-secondary-text": styleValue(styles, "secondaryText", "#fdfbf7"),
+    "--event-tertiary-bg": styleValue(styles, "tertiaryBg", "#8b8378"),
+    "--event-tertiary-text": styleValue(styles, "tertiaryText", "#8b8378"),
+    "--event-accent-bg": styleValue(styles, "accentBg", "#f3eee5"),
+    "--event-accent-text": styleValue(styles, "accentText", "#2d2926"),
+    "--event-base-bg": styleValue(styles, "baseBg", "#fdfbf7"),
+    "--event-base-text": styleValue(styles, "baseText", "#2d2926"),
     "--event-border-radius": styleValue(styles, "borderRadius", "8px"),
   } as CSSProperties;
 

@@ -17,12 +17,12 @@ export function EventShell({ eventData, children }: EventShellProps) {
   const styles = event.styles;
 
   const nav: NavLinkItem[] = [
-    { label: "About", href: "/#about" },
-    { label: "Agenda", href: "/#agenda" },
-    { label: "Speakers", href: "/#speakers" },
-    { label: "Host", href: "/#host" },
-    { label: "Sponsors", href: "/#sponsors" },
-    { label: "FAQ", href: "/#faq" },
+    { label: "About", href: "/about" },
+    { label: "Agenda", href: "/agenda" },
+    { label: "Speakers", href: "/speakers" },
+    { label: "Host", href: "/host" },
+    { label: "Sponsors", href: "/sponsors" },
+    { label: "FAQ", href: "/faq" },
     ...(event.photos_toggle ? [{ label: "Gallery", href: "/photos" }] : []),
   ];
 
@@ -45,7 +45,7 @@ export function EventShell({ eventData, children }: EventShellProps) {
         ctaHref={showCta ? "/#register" : undefined}
       />
       {children}
-      <Footer baseTextColor={styleValue(styles, "baseText", "#171717")} />
+      <Footer baseTextColor={styleValue(styles, "baseText", "#2d2926")} />
     </div>
   );
 }

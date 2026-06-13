@@ -1,0 +1,24 @@
+---
+description: Happily event site architecture, commands, and conventions for all agents
+alwaysApply: true
+---
+
+# Happily project guidance
+
+Read `AGENTS.md` at the repo root for full project instructions. This rule mirrors that file for Cursor.
+
+**Skills** (read when relevant):
+- `.cursor/skills/happily-api/SKILL.md` — API layer, queries, registration, types
+- `.cursor/skills/event-components/SKILL.md` — `components/` presentation layer, theming, gating
+- `.agents/skills/ui-ux-pro-max/SKILL.md` — UI/UX design intelligence, accessibility, styling review
+
+**Key constraints:**
+- Data flow: `HAPPILY_*` env → `lib/happily/config.ts` → `client.ts` → `queries.ts` → `app/(event)/` → `components/`
+- Use `getPublicEvent` / `getPublicPhotos` / `getPublicAttendees` from `queries.ts` — not `happilyClient` directly
+- `getPublicAttendees` returns `null` (not `notFound()`) — load-bearing for confirmation page
+- Tailwind v4 CSS vars: `bg-(--event-primary-bg)` not `bg-[var(--event-primary-bg)]`
+- Server components by default; `"use client"` only when needed
+- `lib/happily/generated/` is read-only — run `npm run api:types` to regenerate
+- Import types from `@/lib/happily/types`, not `generated/schema`
+- Feature gates read per-field off event payload — no central `event.features`
+- `components/` is per-event customization; `lib/happily/` stays shared
