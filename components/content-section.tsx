@@ -19,7 +19,7 @@ export function ContentSection({
   return (
     <Container
       id={id}
-      className={`grid max-w-7xl gap-8 ${image ? "lg:grid-cols-2 lg:items-center" : ""}`}
+      className={`grid max-w-7xl gap-8 ${image ? "lg:grid-cols-2 lg:items-start" : ""}`}
     >
       <div>
         <SectionHeading title={title} description={description} />
@@ -30,7 +30,8 @@ export function ContentSection({
           alt=""
           width={800}
           height={600}
-          className="aspect-4/3 w-full rounded-none object-cover"
+          sizes="(max-width: 1024px) 100vw, 576px"
+          className="h-auto w-full object-contain"
         />
       ) : null}
     </Container>

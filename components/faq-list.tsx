@@ -29,7 +29,7 @@ export function FaqList({ faqs, large = false }: FaqListProps) {
             className={
               large
                 ? "text-lg font-semibold hover:no-underline md:text-xl"
-                : "font-semibold hover:no-underline"
+                : "text-base font-semibold tracking-wider hover:no-underline md:text-lg lg:text-xl"
             }
           >
             {faq.question}
@@ -38,7 +38,7 @@ export function FaqList({ faqs, large = false }: FaqListProps) {
             className={
               large
                 ? "text-base text-(--event-base-text)/90 md:text-lg"
-                : "text-(--event-base-text)/90"
+                : "text-sm leading-relaxed tracking-wide text-(--event-base-text)/90"
             }
           >
             <Markdown>{faq.answer}</Markdown>
