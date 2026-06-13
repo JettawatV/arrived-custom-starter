@@ -1,57 +1,49 @@
 import Image from "next/image";
+import type { CSSProperties } from "react";
 
 import type { PublicEventData } from "@/lib/happily/types";
 
 import { ordered } from "./helpers";
 
-type SponsorTier = NonNullable<PublicEventData["sponsors"][number]["tier"]>;
-
 type SponsorsGridProps = {
   sponsors: PublicEventData["sponsors"];
 };
 
-function calculateLogoHeight(tierOrder: number) {
-  const baseSize = 50;
-  const scalingFactor = 0.85;
-  return baseSize * Math.pow(scalingFactor, tierOrder);
-}
+const LOGO_HEIGHT = 52;
+const LOGO_MAX_WIDTH = 180;
 
-function calculateMaxWidth(logoHeight: number) {
-  return logoHeight * 5;
-}
-
-function SponsorCard({
+function SponsorLogo({
   sponsor,
-  tierIndex = 0,
 }: {
   sponsor: PublicEventData["sponsors"][number];
-  tierIndex?: number;
 }) {
-  const logoHeight = calculateLogoHeight(tierIndex);
-  const maxWidth = calculateMaxWidth(logoHeight);
-
   const content = (
     <div
-      className="relative flex items-center justify-center overflow-hidden"
-      style={{ height: `${logoHeight}px`, maxWidth: `${maxWidth}px` }}
+      className="flex shrink-0 items-center justify-center px-2"
+      style={{ height: `${LOGO_HEIGHT}px`, width: `${LOGO_MAX_WIDTH}px` }}
     >
       {sponsor.logo_url ? (
         <Image
           src={sponsor.logo_url}
           alt={sponsor.name}
-          width={Math.round(maxWidth)}
-          height={Math.round(logoHeight)}
-          className="h-full object-contain"
+          width={LOGO_MAX_WIDTH}
+          height={LOGO_HEIGHT}
+          className="h-full w-full object-contain"
         />
       ) : (
-        <p className="text-lg">{sponsor.name}</p>
+        <p className="text-center text-sm font-semibold">{sponsor.name}</p>
       )}
     </div>
   );
 
   if (sponsor.website) {
     return (
-      <a href={sponsor.website} target="_blank" rel="noopener noreferrer">
+      <a
+        href={sponsor.website}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="shrink-0 transition-opacity hover:opacity-70"
+      >
         {content}
       </a>
     );
@@ -60,74 +52,35 @@ function SponsorCard({
   return content;
 }
 
-function extractTiers(sponsors: PublicEventData["sponsors"]): SponsorTier[] {
-  const seen = new Map<number, SponsorTier>();
-  for (const sponsor of sponsors) {
-    if (sponsor.tier && !seen.has(sponsor.tier.id)) {
-      seen.set(sponsor.tier.id, sponsor.tier);
-    }
-  }
-  return ordered([...seen.values()]);
-}
-
 export function SponsorsGrid({ sponsors }: SponsorsGridProps) {
-  const tiers = extractTiers(sponsors);
+  const items = ordered(sponsors);
 
-  if (tiers.length === 0) {
-    return (
-      <div className="flex flex-col items-center gap-x-4 gap-y-10 pt-12">
-        <div className="flex flex-col items-center justify-center gap-10 sm:flex-row">
-          {ordered(sponsors).map((sponsor) => (
-            <SponsorCard key={sponsor.id} sponsor={sponsor} />
-          ))}
-        </div>
-      </div>
-    );
-  }
+  if (!items.length) return null;
 
-  const sponsorsByTier = new Map<number, PublicEventData["sponsors"]>();
-  const untiered: PublicEventData["sponsors"] = [];
-
-  for (const sponsor of ordered(sponsors)) {
-    if (sponsor.tier_id != null) {
-      const group = sponsorsByTier.get(sponsor.tier_id) ?? [];
-      group.push(sponsor);
-      sponsorsByTier.set(sponsor.tier_id, group);
-    } else {
-      untiered.push(sponsor);
-    }
-  }
+  const loop = [...items, ...items];
+  const duration = Math.max(items.length * 6, 24);
 
   return (
-    <div className="flex flex-col items-center gap-x-4 gap-y-10 pt-12">
-      {tiers.map((tier, tierIndex) => {
-        const tierSponsors = sponsorsByTier.get(tier.id);
-        if (!tierSponsors?.length) return null;
+    <div
+      className="sponsors-marquee relative overflow-hidden pt-12"
+      style={
+        { "--sponsors-marquee-duration": `${duration}s` } as CSSProperties
+      }
+    >
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r from-(--event-base-bg) to-transparent sm:w-24"
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l from-(--event-base-bg) to-transparent sm:w-24"
+      />
 
-        return (
-          <div key={tier.id}>
-            {/* <h3 className="mb-4 text-lg font-semibold text-center">
-              {tier.name}
-            </h3> */}
-            <div className="flex flex-col items-center justify-center gap-10 sm:flex-row">
-              {tierSponsors.map((sponsor) => (
-                <SponsorCard
-                  key={sponsor.id}
-                  sponsor={sponsor}
-                  tierIndex={tierIndex}
-                />
-              ))}
-            </div>
-          </div>
-        );
-      })}
-      {untiered.length > 0 && (
-        <div className="flex flex-col items-center justify-center gap-10 sm:flex-row">
-          {untiered.map((sponsor) => (
-            <SponsorCard key={sponsor.id} sponsor={sponsor} />
-          ))}
-        </div>
-      )}
+      <div className="sponsors-marquee-track flex w-max items-center gap-12 md:gap-16">
+        {loop.map((sponsor, index) => (
+          <SponsorLogo key={`${sponsor.id}-${index}`} sponsor={sponsor} />
+        ))}
+      </div>
     </div>
   );
 }

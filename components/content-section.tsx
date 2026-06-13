@@ -19,20 +19,27 @@ export function ContentSection({
   return (
     <Container
       id={id}
-      className={`grid max-w-7xl gap-8 ${image ? "lg:grid-cols-2 lg:items-start" : ""}`}
+      className={
+        image
+          ? "grid max-w-7xl items-start gap-10 lg:grid-cols-2 lg:gap-14 xl:gap-16"
+          : "max-w-7xl"
+      }
     >
-      <div>
+      <div className="min-w-0">
         <SectionHeading title={title} description={description} />
       </div>
       {image ? (
-        <Image
-          src={image}
-          alt=""
-          width={800}
-          height={600}
-          sizes="(max-width: 1024px) 100vw, 576px"
-          className="h-auto w-full object-contain"
-        />
+        <figure className="min-w-0">
+          <Image
+            src={image}
+            alt=""
+            width={800}
+            height={600}
+            sizes="(max-width: 1024px) 100vw, 576px"
+            className="block h-auto w-full object-contain object-top"
+            style={{ width: "100%", height: "auto" }}
+          />
+        </figure>
       ) : null}
     </Container>
   );

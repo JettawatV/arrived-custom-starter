@@ -214,7 +214,24 @@
   }
 }
 
+@keyframes sponsors-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
+  .sponsors-marquee-track {
+    animation: sponsors-marquee var(--sponsors-marquee-duration, 30s) linear infinite;
+  }
+
+  .sponsors-marquee:hover .sponsors-marquee-track {
+    animation-play-state: paused;
+  }
+
   .hero-reveal-bg {
     animation: hero-bg-reveal 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
@@ -309,6 +326,14 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .sponsors-marquee {
+    overflow-x: auto;
+  }
+
+  .sponsors-marquee-track {
+    animation: none;
+  }
+
   .hero-reveal-bg,
   .hero-reveal-item {
     opacity: 1;
