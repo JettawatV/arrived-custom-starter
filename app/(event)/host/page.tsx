@@ -19,6 +19,7 @@ export default async function HostPage() {
     <main>
       <ContentSection
         id="host"
+        variant="arch"
         title={text(content.companyAboutTitle, "About the Host")}
         description={content.companyAboutDescription}
         image={content.companyAboutImage}

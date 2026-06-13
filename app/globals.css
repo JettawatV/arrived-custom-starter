@@ -238,6 +238,10 @@
   }
 }
 
+.about-mica-arch {
+  border-radius: 999px 999px 1.25rem 1.25rem;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .sponsors-marquee-track {
     animation: sponsors-marquee var(--sponsors-marquee-duration, 30s) linear
