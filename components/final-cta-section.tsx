@@ -75,7 +75,7 @@ export function FinalCtaSection({ event, form }: FinalCtaSectionProps) {
         />
 
         <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center text-center">
-          <h2 className="text-balance text-4xl font-semibold leading-[1.08] tracking-tight transition-transform duration-500 group-hover:scale-[1.015] sm:text-5xl lg:text-6xl">
+          <h2 className="text-balance text-4xl font-semibold leading-[1.08] tracking-tight text-(--event-cta-text) transition-transform duration-500 group-hover:scale-[1.015] sm:text-5xl lg:text-6xl">
             {text(event.name, "See you there")}
           </h2>
 
